@@ -1,0 +1,63 @@
+Apache AXIS:  implementation of the SOAP ("Simple Object Access Protocol") submission to W3C.
+Apache Axis™ is a second generation SOAP engine, the successor to the Apache SOAP project, itself based on the original SOAP4J code that IBM contributed to Apache in April 2000. In contrast to its predecessor, Axis is fully WSDL aware. It also supports the JAX-RPC API.
+
+Today, Apache Axis is to a large extend superseded by a new generation of SOAP stacks such as Apache Axis2, Apache CXF and Metro. However, Axis is still relevant for the following type of projects:
+
+Projects that need to use JAX-RPC. There are only two Open Source implementations of that API: Axis and Sun's reference implementation.
+Projects that need to consume or expose Web services that use SOAP encoding. SOAP encoding has been deprecated and is no longer supported by modern Web service frameworks. However, there are still legacy services that use type of encoding.
+Existing projects that were built using Axis and for which the return on investment of rewriting them using a modern Web service framework would be too low.
+
+
+ 		---------------------
+
+
+Environnement de travail incluant jdk 8
+
+ Pour rappel, JAVA_HOME sera utilisé par Tomcat, et PATH
+servira à pouvoir lancer les commandes javac et java à partir d’un terminal, quel que soit le
+répertoire dans lequel nous nous trouvons. 
+installation Axis, c'est-à-dire, nous allons dire à Tomcat d’héberger
+l’application web Axis. Cela consiste simplement à copier le répertoire du projet Axis à un
+endroit particulier de tomcat 
+
+ancien type de val dans CLASSPATH: 
+.;B:\Red area(x64)\AxisLib\activation.jar;B:\Red area(x64)\AxisLib\axis.jar;B:\Red area(x64)\AxisLib\axis-ant.jar;B:\Red area(x64)\AxisLib\axis-schema.jar;B:\Red area(x64)\AxisLib\commons-discovery-0.2.jar;B:\Red area(x64)\AxisLib\commons-logging-1.0.4.jar;B:\Red area(x64)\AxisLib\jaxrpc.jar;B:\Red area(x64)\AxisLib\log4j-1.2.8.jar;B:\Red area(x64)\AxisLib\mail.jar;B:\Red area(x64)\AxisLib\saaj.jar;B:\Red area(x64)\AxisLib\wsdl4j-1.5.1.jar;B:\Red area(x64)\AxisLib\xerces.jar;
+
+C:\Users\khadiza\Documents\master\II\Cours Services Web\Ressources_Virtuelles\TPWS\AxisLib\xerces.jar;
+
+
+
+nouvel ensemble de valeurs: 
+?.;B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\activation.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\axis.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\axis-ant.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\axis-schema.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\commons-discovery-0.2.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\commons-logging-1.0.4.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\jaxrpc.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\log4j-1.2.8.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\mail.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\saaj.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\wsdl4j-1.5.1.jar;?B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\lib\xerces.jar;
+
+
+
+variable dans la CLASSPATH:  contient les chemins aux packages java (fichiers .jar) dont Axis a besoin pour le traitement
+de requêtes SOAP
+
+étape suivante: démarrage du serveur avec la commande: catalina start
+
+compiler la classe du service offert et mettre le bytecode dans le dossier B:\Red area(x64)\apache-tomcat-9.0.0.M17\webapps\axis\WEB-INF\classes
+
+
+
+génération du stub (pour la création des clients) [Création d’un client en utilisant le générateur WSDL2Java]
+1. http://localhost:8080/axis/services  -----récupération du fichier wsdl du service chatroom
+2.on en fait un fichier appelé chatroom.wsdl
+3.Dans un terminal DOS, déplaçons-nous dans notre répertoire client et lançons la commande suivante java org.apache.axis.wsdl.WSDL2Java ChatRoom.wsdl =>génération du
+dossier com et de ses sous-dossiers et fichiers.
+
+
+Déployer le service : java  org.apache.axis.client.AdminClient ChatRoomDeploy.wsdd 
+
+
+
+copie du dossier généré, localhost dans le workspace d'éclipse afin que les clients développés sur eclipse ^m puissent importer le service et exploiter ses méthodes
+hemin d'accés: C:\Users\khadiza\workspace\ClientApp\bin\clientapp 
+
+
+
+------------------------------un internaute s'inscrit puis ses infos sont sauvegardées dans la table user
+------un membre entre son login et son mot de passe
+------vérification de la correspondance entre les infos entrées et celles contenues dans la bdd
+--si ok..appel du web service et exécution de la méthode de login	--si non fields vidés et accés refusé

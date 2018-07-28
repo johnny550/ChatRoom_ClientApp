@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://localhost:8080/axis/services/ChatRoom" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://localhost:8080/axis/services/ChatRoom" xmlns:intf="http://localhost:8080/axis/services/ChatRoom" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="Vector">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getNumberOfUsersOnlineResponse">
+
+      <wsdl:part name="getNumberOfUsersOnlineReturn" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part name="loginReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logoutResponse">
+
+      <wsdl:part name="logoutReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMessagesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logoutRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsersOnlineRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMessageRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsersOnlineResponse">
+
+      <wsdl:part name="getUsersOnlineReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendMessageResponse">
+
+      <wsdl:part name="sendMessageReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNumberOfUsersOnlineRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getMessagesResponse">
+
+      <wsdl:part name="getMessagesReturn" type="apachesoap:Vector"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ChatRoom">
+
+      <wsdl:operation name="login" parameterOrder="in0">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest"/>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout" parameterOrder="in0">
+
+         <wsdl:input message="impl:logoutRequest" name="logoutRequest"/>
+
+         <wsdl:output message="impl:logoutResponse" name="logoutResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMessages" parameterOrder="in0">
+
+         <wsdl:input message="impl:getMessagesRequest" name="getMessagesRequest"/>
+
+         <wsdl:output message="impl:getMessagesResponse" name="getMessagesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsersOnline">
+
+         <wsdl:input message="impl:getUsersOnlineRequest" name="getUsersOnlineRequest"/>
+
+         <wsdl:output message="impl:getUsersOnlineResponse" name="getUsersOnlineResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendMessage" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:sendMessageRequest" name="sendMessageRequest"/>
+
+         <wsdl:output message="impl:sendMessageResponse" name="sendMessageResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNumberOfUsersOnline">
+
+         <wsdl:input message="impl:getNumberOfUsersOnlineRequest" name="getNumberOfUsersOnlineRequest"/>
+
+         <wsdl:output message="impl:getNumberOfUsersOnlineResponse" name="getNumberOfUsersOnlineResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ChatRoomSoapBinding" type="impl:ChatRoom">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/services/ChatRoom" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logoutRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logoutResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/services/ChatRoom" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMessages">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMessagesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMessagesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/services/ChatRoom" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsersOnline">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsersOnlineRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsersOnlineResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/services/ChatRoom" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendMessage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendMessageRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendMessageResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/services/ChatRoom" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNumberOfUsersOnline">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNumberOfUsersOnlineRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNumberOfUsersOnlineResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/services/ChatRoom" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ChatRoomService">
+
+      <wsdl:port binding="impl:ChatRoomSoapBinding" name="ChatRoom">
+
+         <wsdlsoap:address location="http://localhost:8080/axis/services/ChatRoom"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
