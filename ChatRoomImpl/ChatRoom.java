@@ -47,6 +47,7 @@ public boolean login(String id){
 	return true;
 }
 
+//Jehoram
 /** Cette méthode permet à l'utilisateur id de se délogger (d'être hors ligne)
  *@param id l'identificateur de l'utilisateur
  *@return vrai si le logout s'est bien fait, faux sinon (s'il n'était pas en ligne par exemple.)
